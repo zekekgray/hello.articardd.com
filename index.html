@@ -4,95 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>What is articardd, and why would I use it?</title>
+<script>document.documentElement.className+=' js'</script>
 <style>
-:root{--bg:#ECE4D6;--ink:#1c1c1e;--mute:rgba(60,60,67,.62);--line:rgba(0,0,0,.12);--acc:#B9AA8E;--acct:#5E584B;--btn:#ffffff;--btnt:#1c1c1e;--mark:#1c1c1e;--markt:#ECE4D6;--card:rgba(255,255,255,.38);--cardline:rgba(0,0,0,.08);--inset:inset 0 1px 0 rgba(255,255,255,.5);--sh:0 1px 2px rgba(0,0,0,.18),0 10px 24px -10px rgba(0,0,0,.45);--shh:0 2px 4px rgba(0,0,0,.2),0 14px 28px -10px rgba(0,0,0,.5)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121315;--ink:#f2ede4;--mute:rgba(235,235,245,.6);--line:rgba(255,255,255,.14);--acc:#8F8672;--acct:#CFC5B0;--btn:#ffffff;--btnt:#1c1c1e;--mark:#f2ede4;--markt:#121315;--card:#1c1d20;--cardline:rgba(255,255,255,.08);--inset:inset 0 1px 0 rgba(255,255,255,.05);--sh:0 1px 2px rgba(0,0,0,.5),0 12px 28px -12px rgba(255,255,255,.12);--shh:0 2px 4px rgba(0,0,0,.5),0 16px 32px -12px rgba(255,255,255,.2)}}
-:root[data-theme="dark"]{--bg:#121315;--ink:#f2ede4;--mute:rgba(235,235,245,.6);--line:rgba(255,255,255,.14);--acc:#8F8672;--acct:#CFC5B0;--btn:#ffffff;--btnt:#1c1c1e;--mark:#f2ede4;--markt:#121315;--card:#1c1d20;--cardline:rgba(255,255,255,.08);--inset:inset 0 1px 0 rgba(255,255,255,.05);--sh:0 1px 2px rgba(0,0,0,.5),0 12px 28px -12px rgba(255,255,255,.12);--shh:0 2px 4px rgba(0,0,0,.5),0 16px 32px -12px rgba(255,255,255,.2)}
+:root{--bg:#F5F0E6;--bg2:#ECE4D6;--bg3:#000;--ink:#1d1d1f;--mute:#6e6e73;--ink3:#f5f5f7;--mute3:#a1a1a6;--line:rgba(0,0,0,.1);--nav:rgba(245,240,230,.72);--pill:#fff;--pillt:#1d1d1f;--pillline:rgba(0,0,0,.06);--sh:0 1px 2px rgba(0,0,0,.08),0 10px 24px -10px rgba(0,0,0,.25);--shh:0 2px 4px rgba(0,0,0,.1),0 16px 32px -12px rgba(0,0,0,.32)}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--bg2:#141415;--bg3:#1d1d1f;--ink:#f5f5f7;--mute:#a1a1a6;--line:rgba(255,255,255,.14);--nav:rgba(0,0,0,.72);--pill:#fff;--pillt:#1d1d1f;--pillline:rgba(255,255,255,.1);--sh:0 1px 2px rgba(0,0,0,.5),0 10px 24px -10px rgba(255,255,255,.14);--shh:0 2px 4px rgba(0,0,0,.5),0 16px 32px -12px rgba(255,255,255,.24)}}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:-apple-system,'SF Pro Text','Helvetica Neue',Arial,sans-serif;line-height:1.65}
-.wrap{max-width:520px;margin:0 auto;padding:calc(48px + env(safe-area-inset-top,0px)) 24px calc(88px + env(safe-area-inset-bottom,0px))}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,'SF Pro Display','SF Pro Text','Helvetica Neue',Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
 
-/* Brand header */
-.brand{display:flex;align-items:center;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--line)}
-.mark{flex:none;width:46px;height:46px;border-radius:13px;background:var(--mark);color:var(--markt);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;letter-spacing:-.04em;line-height:1;padding-bottom:4px;position:relative}
-.word{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1}
-.word i{font-style:normal;color:var(--acc)}
-.tag{display:block;margin-top:8px;font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:10;padding-top:env(safe-area-inset-top,0px);background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:980px;height:48px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:600;letter-spacing:-.02em}
 
-/* Opening */
-.hero{margin:56px 0 40px}
-.eyebrow{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--acct);margin-bottom:18px}
-.eyebrow::before{content:"";width:22px;height:1.5px;border-radius:1px;background:var(--acc);opacity:.8}
-h1{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.18;margin:0 0 24px}
-.lead{font-size:19px;font-weight:500;line-height:1.55;margin:0}
+/* Pill */
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;background:var(--pill);color:var(--pillt);font-weight:500;font-size:17px;letter-spacing:-.015em;padding:15px 28px;border-radius:999px;border:1px solid var(--pillline);box-shadow:var(--sh);transition:transform .2s ease,box-shadow .2s ease;-webkit-tap-highlight-color:transparent}
+.pill svg{width:17px;height:17px;transition:transform .2s ease}
+.pill.sm{font-size:13px;padding:6px 14px;gap:0;box-shadow:none}
+.pill:active{transform:scale(.97)}
+.pill:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+@media (hover:hover){.pill:hover{transform:translateY(-1px);box-shadow:var(--shh)}.pill.sm:hover{box-shadow:var(--sh)}.pill:hover svg{transform:translateX(3px)}}
 
-/* Body */
-p{font-size:16px;margin-bottom:16px}
-p.gap{margin-top:44px}
-p.value{font-size:18px;font-weight:600;line-height:1.5;margin-top:-4px}
-.center{position:relative;margin:56px 0;padding:32px 24px 30px 28px;border-radius:18px;background:var(--card);border:1px solid var(--cardline);box-shadow:var(--inset);overflow:hidden}
-.center::before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:3px;border-radius:0 3px 3px 0;background:var(--acc)}
-.center .pre{font-size:13.5px;color:var(--mute);margin-bottom:16px}
-.say{font-size:27px;font-weight:700;line-height:1.28;letter-spacing:-.025em;margin:0 0 18px}
-.say .q{color:var(--acct)}
-.center .post{font-size:15px;color:var(--mute);margin:0;padding-top:16px;border-top:1px solid var(--line)}
-.end{position:relative;font-size:20px;font-weight:700;line-height:1.4;letter-spacing:-.01em;margin:84px 0 36px;padding-top:38px;border-top:1px solid var(--line)}
-.end::before{content:"";position:absolute;left:0;top:-1.5px;width:44px;height:3px;border-radius:2px;background:var(--acc)}
-.end em{font-style:normal;color:var(--acct)}
-.cta{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;background:var(--btn);color:var(--btnt);font-weight:600;font-size:17px;letter-spacing:-.015em;padding:17px 24px;border-radius:999px;border:1px solid var(--cardline);box-shadow:var(--sh);transition:transform .18s ease,box-shadow .18s ease;-webkit-tap-highlight-color:transparent}
-.cta svg{width:18px;height:18px;flex:none;transition:transform .18s ease}
-.cta:active{transform:scale(.985);box-shadow:0 1px 2px rgba(0,0,0,.2),0 4px 12px -8px rgba(0,0,0,.4)}
-.cta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-@media (hover:hover){
-  .cta:hover{transform:translateY(-1px);box-shadow:var(--shh)}
-  .cta:hover svg{transform:translateX(3px)}
-  .url:hover{color:var(--ink);text-decoration-color:var(--acc)}
-}
-.url{display:block;text-align:center;margin-top:20px;font-size:13px;font-weight:500;letter-spacing:.01em;color:var(--mute);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;transition:color .18s ease,text-decoration-color .18s ease}
-@media (prefers-reduced-motion:reduce){.cta,.cta svg,.url{transition:none}.cta:hover,.cta:active{transform:none}.cta:hover svg{transform:none}}
+/* Sections */
+.s{padding:clamp(96px,17vw,160px) 24px;text-align:center}
+.s.alt{background:var(--bg2)}
+.s.dark{background:var(--bg3);color:var(--ink3)}
+.in{max-width:680px;margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:.01em;color:var(--mute);margin-bottom:18px}
+h1{font-size:clamp(40px,10.5vw,76px);font-weight:700;letter-spacing:-.04em;line-height:1.04}
+.lead{font-size:clamp(19px,3vw,24px);font-weight:500;line-height:1.4;letter-spacing:-.015em;color:var(--mute);margin:28px auto 0;max-width:600px}
+.cta{margin-top:40px}
+.big{font-size:clamp(28px,6.6vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.12}
+.sub{font-size:clamp(17px,2.5vw,21px);line-height:1.5;letter-spacing:-.01em;color:var(--mute);margin-top:24px}
+.big.soft{color:var(--mute)}
+.big.last{margin-top:28px}
+
+/* Hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:calc(96px + env(safe-area-inset-top,0px))}
+.hero .in{width:100%}
+
+/* Quote moment */
+.pre{font-size:clamp(16px,2.4vw,19px);color:var(--mute3);margin-bottom:28px;letter-spacing:-.01em}
+.quote{font-size:clamp(36px,10vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1.06}
+.post{font-size:clamp(16px,2.4vw,19px);color:var(--mute3);margin-top:32px;letter-spacing:-.01em}
+
+/* Close */
+.end{font-size:clamp(24px,5.4vw,36px);font-weight:700;letter-spacing:-.03em;line-height:1.18}
+.end span{color:var(--mute)}
+.end + .cta{margin-top:36px}
+.close{padding-bottom:calc(clamp(96px,17vw,160px) + env(safe-area-inset-bottom,0px))}
+
+/* Reveal */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}.pill,.pill svg{transition:none}.pill:hover,.pill:active{transform:none}.pill:hover svg{transform:none}}
 </style>
 </head>
 <body>
-<main class="wrap">
 
-<header class="brand">
-  <div class="mark" aria-hidden="true">a</div>
-  <div>
-    <div class="word">articardd<i>.</i></div>
-    <span class="tag">connect differently</span>
-  </div>
-</header>
+<nav class="nav"><div class="nav-in">
+  <span class="logo">articardd.</span>
+  <a class="pill sm" href="https://articardd.com" target="_blank" rel="noopener">Open</a>
+</div></nav>
 
-<section class="hero">
-  <div class="eyebrow">Professional digital identity</div>
-  <h1>What is articardd, and why would I use it?</h1>
-  <p class="lead">articardd is more than a digital business card. It is your professional digital identity — one place where people can see who you are, what you do, and how they can connect with you.</p>
-</section>
+<main>
 
-<p>Instead of giving someone your phone number, email, Facebook, LinkedIn, Instagram, website, and other links separately, you simply give them your articardd. They can instantly view the information you choose to share, save your contact, connect with you, and access your important links.</p>
+<section class="s hero"><div class="in">
+  <div class="eyebrow rv">Professional digital identity</div>
+  <h1 class="rv">What is articardd, and why would I use it?</h1>
+  <p class="lead rv">articardd is more than a digital business card. It is your professional digital identity — one place where people can see who you are, what you do, and how they can connect with you.</p>
+  <div class="rv"><a class="pill cta" href="https://articardd.com" target="_blank" rel="noopener"><span>Open articardd</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a></div>
+</div></section>
 
-<p class="gap">The biggest advantage is that your information is not static. If your phone number, email, company, position, website, or other information changes, you update your articardd once. The next person who views it sees the latest version — no need to print new cards or send everyone an update.</p>
+<section class="s alt"><div class="in">
+  <h2 class="big rv">Instead of giving someone your phone number, email, Facebook, LinkedIn, Instagram, website, and other links separately, you simply give them your articardd.</h2>
+  <p class="sub rv">They can instantly view the information you choose to share, save your contact, connect with you, and access your important links.</p>
+</div></section>
 
-<p class="gap">For professionals, it makes networking faster and more memorable. For entrepreneurs and business owners, it gives you a professional identity you can control and continuously maintain. For salespeople, consultants, freelancers, agents, recruiters, and anyone who regularly meets new people, it makes exchanging information almost effortless.</p>
+<section class="s"><div class="in">
+  <h2 class="big rv">The biggest advantage is that your information is not static.</h2>
+  <p class="sub rv">If your phone number, email, company, position, website, or other information changes, you update your articardd once. The next person who views it sees the latest version — no need to print new cards or send everyone an update.</p>
+</div></section>
 
-<div class="center">
-  <p class="pre">Instead of asking someone to manually type your details, you can simply say:</p>
-  <p class="say"><span class="q">“</span>Here, this is my articardd.<span class="q">”</span></p>
-  <p class="post">They can open it, see your professional profile, and save your contact.</p>
-</div>
+<section class="s alt"><div class="in">
+  <h2 class="big rv">For professionals, it makes networking faster and more memorable.</h2>
+  <p class="sub rv">For entrepreneurs and business owners, it gives you a professional identity you can control and continuously maintain. For salespeople, consultants, freelancers, agents, recruiters, and anyone who regularly meets new people, it makes exchanging information almost effortless.</p>
+</div></section>
 
-<p class="gap" style="margin-top:0">And unlike relying entirely on social media, articardd gives you a dedicated place for your professional identity. Your social accounts, website, contact information, portfolio, booking links, and other ways of reaching you can all start from one place.</p>
+<section class="s dark"><div class="in">
+  <p class="pre rv">Instead of asking someone to manually type your details, you can simply say:</p>
+  <p class="quote rv">“Here, this is my articardd.”</p>
+  <p class="post rv">They can open it, see your professional profile, and save your contact.</p>
+</div></section>
 
-<p class="gap">So the value isn't simply that you have a digital version of a business card.</p>
+<section class="s"><div class="in">
+  <h2 class="big rv">And unlike relying entirely on social media, articardd gives you a dedicated place for your professional identity.</h2>
+  <p class="sub rv">Your social accounts, website, contact information, portfolio, booking links, and other ways of reaching you can all start from one place.</p>
+</div></section>
 
-<p class="value">The value is that you have one identity that can stay current, one place people can remember, and one simple way to turn a meeting into a lasting connection.</p>
+<section class="s alt"><div class="in">
+  <h2 class="big soft rv">So the value isn't simply that you have a digital version of a business card.</h2>
+  <h2 class="big last rv">The value is that you have one identity that can stay current, one place people can remember, and one simple way to turn a meeting into a lasting connection.</h2>
+</div></section>
 
-<div class="end">articardd — <em>Your professional identity, always current, always accessible.</em></div>
-
-<a class="cta" href="https://articardd.com" target="_blank" rel="noopener"><span>Open articardd</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
-<a class="url" href="https://articardd.com" target="_blank" rel="noopener">articardd.com</a>
+<section class="s close"><div class="in">
+  <p class="end rv">articardd — <span>Your professional identity, always current, always accessible.</span></p>
+  <div class="rv"><a class="pill cta" href="https://articardd.com" target="_blank" rel="noopener"><span>Open articardd</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a></div>
+</div></section>
 
 </main>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
 </body>
 </html>
