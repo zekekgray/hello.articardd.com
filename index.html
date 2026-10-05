@@ -6,8 +6,14 @@
 <title>What is articardd, and why would I use it?</title>
 <script>document.documentElement.className+=' js'</script>
 <style>
-:root{--bg:#F5F0E6;--bg2:#ECE4D6;--bg3:#000;--ink:#1d1d1f;--mute:#6e6e73;--ink3:#f5f5f7;--mute3:#a1a1a6;--line:rgba(0,0,0,.1);--nav:rgba(245,240,230,.72);--pill:#fff;--pillt:#1d1d1f;--pillline:rgba(0,0,0,.06);--sh:0 1px 2px rgba(0,0,0,.08),0 10px 24px -10px rgba(0,0,0,.25);--shh:0 2px 4px rgba(0,0,0,.1),0 16px 32px -12px rgba(0,0,0,.32)}
-@media (prefers-color-scheme:dark){:root{--bg:#000;--bg2:#141415;--bg3:#1d1d1f;--ink:#f5f5f7;--mute:#a1a1a6;--line:rgba(255,255,255,.14);--nav:rgba(0,0,0,.72);--pill:#fff;--pillt:#1d1d1f;--pillline:rgba(255,255,255,.1);--sh:0 1px 2px rgba(0,0,0,.5),0 10px 24px -10px rgba(255,255,255,.14);--shh:0 2px 4px rgba(0,0,0,.5),0 16px 32px -12px rgba(255,255,255,.24)}}
+:root{--bg:#F5F0E6;--bg2:#ECE4D6;--bg3:#000;--ink:#1d1d1f;--mute:#6e6e73;--ink3:#f5f5f7;--mute3:#a1a1a6;--line:rgba(0,0,0,.1);--nav:rgba(245,240,230,.72);
+--glass:#fff;--glassline:rgba(0,0,0,.06);--pillt:#1d1d1f;
+--gsh:0 1px 2px rgba(0,0,0,.08),0 10px 24px -10px rgba(0,0,0,.25);
+--b1:rgba(185,170,142,.8);--b2:rgba(255,255,255,.95)}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--bg2:#141415;--bg3:#1d1d1f;--ink:#f5f5f7;--mute:#a1a1a6;--line:rgba(255,255,255,.14);--nav:rgba(0,0,0,.72);
+--glass:#fff;--glassline:rgba(255,255,255,.1);--pillt:#1d1d1f;
+--gsh:0 1px 2px rgba(0,0,0,.5),0 10px 24px -10px rgba(255,255,255,.14);
+--b1:rgba(255,255,255,.22);--b2:rgba(161,161,166,.3)}}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:-apple-system,'SF Pro Display','SF Pro Text','Helvetica Neue',Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -17,13 +23,15 @@ body{background:var(--bg);color:var(--ink);font-family:-apple-system,'SF Pro Dis
 .nav-in{max-width:980px;height:48px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:17px;font-weight:600;letter-spacing:-.02em}
 
-/* Pill */
-.pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;background:var(--pill);color:var(--pillt);font-weight:500;font-size:17px;letter-spacing:-.015em;padding:15px 28px;border-radius:999px;border:1px solid var(--pillline);box-shadow:var(--sh);transition:transform .2s ease,box-shadow .2s ease;-webkit-tap-highlight-color:transparent}
-.pill svg{width:17px;height:17px;transition:transform .2s ease}
-.pill.sm{font-size:13px;padding:6px 14px;gap:0;box-shadow:none}
-.pill:active{transform:scale(.97)}
+/* Glass pill (iPhone-style) */
+.pill{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--pillt);font-weight:500;font-size:17px;letter-spacing:-.015em;padding:15px 28px;border-radius:999px;background:var(--glass);border:1px solid var(--glassline);box-shadow:var(--gsh);will-change:transform;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;transition:box-shadow .3s ease}
+.pill .lbl{position:relative;z-index:1}
+.pill.sm{font-size:14px;padding:8px 18px}
 .pill:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-@media (hover:hover){.pill:hover{transform:translateY(-1px);box-shadow:var(--shh)}.pill.sm:hover{box-shadow:var(--sh)}.pill:hover svg{transform:translateX(3px)}}
+html:not(.sp) .pill:active{transform:scale(.95)}
+
+/* CTA wrapper */
+.halo{position:relative;isolation:isolate;display:inline-block;margin-top:44px}
 
 /* Sections */
 .s{padding:clamp(96px,17vw,160px) 24px;text-align:center}
@@ -33,7 +41,6 @@ body{background:var(--bg);color:var(--ink);font-family:-apple-system,'SF Pro Dis
 .eyebrow{font-size:14px;font-weight:600;letter-spacing:.01em;color:var(--mute);margin-bottom:18px}
 h1{font-size:clamp(40px,10.5vw,76px);font-weight:700;letter-spacing:-.04em;line-height:1.04}
 .lead{font-size:clamp(19px,3vw,24px);font-weight:500;line-height:1.4;letter-spacing:-.015em;color:var(--mute);margin:28px auto 0;max-width:600px}
-.cta{margin-top:40px}
 .big{font-size:clamp(28px,6.6vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.12}
 .sub{font-size:clamp(17px,2.5vw,21px);line-height:1.5;letter-spacing:-.01em;color:var(--mute);margin-top:24px}
 .big.soft{color:var(--mute)}
@@ -51,20 +58,20 @@ h1{font-size:clamp(40px,10.5vw,76px);font-weight:700;letter-spacing:-.04em;line-
 /* Close */
 .end{font-size:clamp(24px,5.4vw,36px);font-weight:700;letter-spacing:-.03em;line-height:1.18}
 .end span{color:var(--mute)}
-.end + .cta{margin-top:36px}
 .close{padding-bottom:calc(clamp(96px,17vw,160px) + env(safe-area-inset-bottom,0px))}
+.close .halo{margin-top:40px}
 
 /* Reveal */
 .js .rv{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}.pill,.pill svg{transition:none}.pill:hover,.pill:active{transform:none}.pill:hover svg{transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}.pill{transition:none}html:not(.sp) .pill:active{transform:none}}
 </style>
 </head>
 <body>
 
 <nav class="nav"><div class="nav-in">
   <span class="logo">articardd.</span>
-  <a class="pill sm" href="https://articardd.com" target="_blank" rel="noopener">Open</a>
+  <a class="pill sm" href="https://articardd.com" target="_blank" rel="noopener"><span class="lbl">Open</span></a>
 </div></nav>
 
 <main>
@@ -73,7 +80,7 @@ h1{font-size:clamp(40px,10.5vw,76px);font-weight:700;letter-spacing:-.04em;line-
   <div class="eyebrow rv">Professional digital identity</div>
   <h1 class="rv">What is articardd, and why would I use it?</h1>
   <p class="lead rv">articardd is more than a digital business card. It is your professional digital identity — one place where people can see who you are, what you do, and how they can connect with you.</p>
-  <div class="rv"><a class="pill cta" href="https://articardd.com" target="_blank" rel="noopener"><span>Open articardd</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a></div>
+  <div class="rv"><span class="halo"><a class="pill" href="https://articardd.com" target="_blank" rel="noopener"><span class="lbl">Open articardd</span></a></span></div>
 </div></section>
 
 <section class="s alt"><div class="in">
@@ -109,17 +116,88 @@ h1{font-size:clamp(40px,10.5vw,76px);font-weight:700;letter-spacing:-.04em;line-
 
 <section class="s close"><div class="in">
   <p class="end rv">articardd — <span>Your professional identity, always current, always accessible.</span></p>
-  <div class="rv"><a class="pill cta" href="https://articardd.com" target="_blank" rel="noopener"><span>Open articardd</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a></div>
+  <div class="rv"><span class="halo"><a class="pill" href="https://articardd.com" target="_blank" rel="noopener"><span class="lbl">Open articardd</span></a></span></div>
 </div></section>
 
 </main>
 
 <script>
 (function(){
+  /* Scroll reveal */
   var els=document.querySelectorAll('.rv');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
-  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
-  els.forEach(function(e){io.observe(e)});
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')})}
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(e){io.observe(e)});
+  }
+
+  /* Spring buttons */
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  document.documentElement.classList.add('sp');
+
+  /* Haptics: Android vibrates; iPhone Safari gets a tick from a hidden switch (best effort) */
+  var hx=document.createElement('label');
+  hx.setAttribute('aria-hidden','true');
+  hx.style.cssText='position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none';
+  var cb=document.createElement('input');cb.type='checkbox';cb.setAttribute('switch','');
+  hx.appendChild(cb);document.body.appendChild(hx);
+  var canVibrate=typeof navigator.vibrate==='function';
+  function pressTick(){if(canVibrate){try{navigator.vibrate(10)}catch(e){}}}
+  function releaseTick(){if(!canVibrate){try{hx.click()}catch(e){}}}
+
+  var AX=['x','y','s'];
+  document.querySelectorAll('.pill').forEach(function(el){
+    var p={x:0,y:0,s:1},v={x:0,y:0,s:0},t={x:0,y:0,s:1};
+    var k=320,d=18,raf=0,last=0,hover=false,down=false;
+    var big=!el.classList.contains('sm');
+    var HOVER=big?1.02:1.04,PRESS=big?.96:.94;
+
+    function render(){el.style.transform='translate3d('+p.x.toFixed(2)+'px,'+p.y.toFixed(2)+'px,0) scale('+p.s.toFixed(4)+')'}
+    function frame(now){
+      var dt=Math.min((now-last)/1000,.032);last=now;
+      var n=Math.max(1,Math.ceil(dt/.004)),h=dt/n,rest=true,i;
+      for(i=0;i<n;i++){AX.forEach(function(a){var f=-k*(p[a]-t[a])-d*v[a];v[a]+=f*h;p[a]+=v[a]*h})}
+      AX.forEach(function(a){if(Math.abs(v[a])>.02||Math.abs(p[a]-t[a])>.003)rest=false});
+      if(rest){AX.forEach(function(a){p[a]=t[a];v[a]=0});render();raf=0;return}
+      render();raf=requestAnimationFrame(frame);
+    }
+    function go(){if(!raf){last=performance.now();raf=requestAnimationFrame(frame)}}
+    function glow(e){
+      var r=el.getBoundingClientRect();
+      var rx=(e.clientX-r.left)/r.width,ry=(e.clientY-r.top)/r.height;
+      el.style.setProperty('--mx',(rx*100).toFixed(1)+'%');
+      el.style.setProperty('--my',(ry*100).toFixed(1)+'%');
+      return [rx,ry];
+    }
+
+    el.addEventListener('pointerenter',function(e){
+      if(e.pointerType!=='mouse')return;
+      hover=true;t.s=down?PRESS:HOVER;k=320;d=18;el.style.setProperty('--hl','1');go();
+    });
+    el.addEventListener('pointermove',function(e){
+      var r=glow(e);
+      if(e.pointerType==='mouse'){
+                el.style.setProperty('--hl','1');go();
+      }
+    });
+    el.addEventListener('pointerleave',function(){
+      hover=false;t.x=0;t.y=0;t.s=down?PRESS:1;el.style.setProperty('--hl','0');go();
+    });
+    el.addEventListener('pointerdown',function(e){
+      down=true;glow(e);el.style.setProperty('--hl','1');
+      t.s=PRESS;k=460;d=28;pressTick();go();
+    });
+    function up(){
+      if(!down)return;down=false;
+      t.s=hover?HOVER:1;k=300;d=14; /* slight spring overshoot */
+      if(!hover)el.style.setProperty('--hl','0');
+      go();
+    }
+    el.addEventListener('pointerup',up);
+    el.addEventListener('pointercancel',up);
+    el.addEventListener('click',releaseTick);
+    el.addEventListener('dragstart',function(e){e.preventDefault()});
+  });
 })();
 </script>
 </body>
