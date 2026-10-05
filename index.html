@@ -5,56 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>What is articardd, and why would I use it?</title>
 <style>
-:root{--bg:#ECE4D6;--ink:#1c1c1e;--mute:rgba(60,60,67,.62);--line:rgba(0,0,0,.12);--gold:#C9A227;--btn:#1c1c1e;--btnt:#ECE4D6;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17181a;--ink:#f2ede4;--mute:rgba(235,235,245,.6);--line:rgba(255,255,255,.14);--gold:#E8CC7A;--btn:#E8CC7A;--btnt:#1c1c1e}}
-:root[data-theme="dark"]{--bg:#17181a;--ink:#f2ede4;--mute:rgba(235,235,245,.6);--line:rgba(255,255,255,.14);--gold:#E8CC7A;--btn:#E8CC7A;--btnt:#1c1c1e}
+:root{--bg:#ECE4D6;--ink:#1c1c1e;--mute:rgba(60,60,67,.62);--line:rgba(0,0,0,.12);--acc:#B9AA8E;--acct:#5E584B;--btn:#ffffff;--btnt:#1c1c1e;--mark:#1c1c1e;--markt:#ECE4D6;--card:rgba(255,255,255,.38);--cardline:rgba(0,0,0,.08);--inset:inset 0 1px 0 rgba(255,255,255,.5);--sh:0 1px 2px rgba(0,0,0,.18),0 10px 24px -10px rgba(0,0,0,.45);--shh:0 2px 4px rgba(0,0,0,.2),0 14px 28px -10px rgba(0,0,0,.5)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121315;--ink:#f2ede4;--mute:rgba(235,235,245,.6);--line:rgba(255,255,255,.14);--acc:#8F8672;--acct:#CFC5B0;--btn:#ffffff;--btnt:#1c1c1e;--mark:#f2ede4;--markt:#121315;--card:#1c1d20;--cardline:rgba(255,255,255,.08);--inset:inset 0 1px 0 rgba(255,255,255,.05);--sh:0 1px 2px rgba(0,0,0,.5),0 12px 28px -12px rgba(255,255,255,.12);--shh:0 2px 4px rgba(0,0,0,.5),0 16px 32px -12px rgba(255,255,255,.2)}}
+:root[data-theme="dark"]{--bg:#121315;--ink:#f2ede4;--mute:rgba(235,235,245,.6);--line:rgba(255,255,255,.14);--acc:#8F8672;--acct:#CFC5B0;--btn:#ffffff;--btnt:#1c1c1e;--mark:#f2ede4;--markt:#121315;--card:#1c1d20;--cardline:rgba(255,255,255,.08);--inset:inset 0 1px 0 rgba(255,255,255,.05);--sh:0 1px 2px rgba(0,0,0,.5),0 12px 28px -12px rgba(255,255,255,.12);--shh:0 2px 4px rgba(0,0,0,.5),0 16px 32px -12px rgba(255,255,255,.2)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:-apple-system,'SF Pro Text','Helvetica Neue',Arial,sans-serif;line-height:1.65}
-.wrap{max-width:520px;margin:0 auto;padding:36px 24px 48px}
-.brand{font-size:20px;font-weight:700;letter-spacing:-.01em}
-.brand span{display:block;font-size:12.5px;font-weight:300;letter-spacing:.06em;color:var(--mute);margin-top:2px}
-h1{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin:40px 0 20px}
+.wrap{max-width:520px;margin:0 auto;padding:calc(48px + env(safe-area-inset-top,0px)) 24px calc(88px + env(safe-area-inset-bottom,0px))}
+
+/* Brand header */
+.brand{display:flex;align-items:center;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.mark{flex:none;width:46px;height:46px;border-radius:13px;background:var(--mark);color:var(--markt);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;letter-spacing:-.04em;line-height:1;padding-bottom:4px;position:relative}
+.word{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.word i{font-style:normal;color:var(--acc)}
+.tag{display:block;margin-top:8px;font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+/* Opening */
+.hero{margin:56px 0 40px}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--acct);margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:1.5px;border-radius:1px;background:var(--acc);opacity:.8}
+h1{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.18;margin:0 0 24px}
+.lead{font-size:19px;font-weight:500;line-height:1.55;margin:0}
+
+/* Body */
 p{font-size:16px;margin-bottom:16px}
-.say{font-size:20px;font-weight:600;line-height:1.4;margin:8px 0 18px}
-.end{font-size:18px;font-weight:700;line-height:1.4;margin:28px 0 26px;padding-top:24px;border-top:1px solid var(--line)}
-.end em{font-style:normal;color:var(--gold)}
-.cta{display:block;text-align:center;text-decoration:none;background:var(--btn);color:var(--btnt);font-weight:700;font-size:17px;padding:16px;border-radius:14px;-webkit-tap-highlight-color:transparent}
-.cta:active{opacity:.85}
-.url{display:block;text-align:center;margin-top:14px;font-size:14px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+p.gap{margin-top:44px}
+p.value{font-size:18px;font-weight:600;line-height:1.5;margin-top:-4px}
+.center{position:relative;margin:56px 0;padding:32px 24px 30px 28px;border-radius:18px;background:var(--card);border:1px solid var(--cardline);box-shadow:var(--inset);overflow:hidden}
+.center::before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:3px;border-radius:0 3px 3px 0;background:var(--acc)}
+.center .pre{font-size:13.5px;color:var(--mute);margin-bottom:16px}
+.say{font-size:27px;font-weight:700;line-height:1.28;letter-spacing:-.025em;margin:0 0 18px}
+.say .q{color:var(--acct)}
+.center .post{font-size:15px;color:var(--mute);margin:0;padding-top:16px;border-top:1px solid var(--line)}
+.end{position:relative;font-size:20px;font-weight:700;line-height:1.4;letter-spacing:-.01em;margin:84px 0 36px;padding-top:38px;border-top:1px solid var(--line)}
+.end::before{content:"";position:absolute;left:0;top:-1.5px;width:44px;height:3px;border-radius:2px;background:var(--acc)}
+.end em{font-style:normal;color:var(--acct)}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;background:var(--btn);color:var(--btnt);font-weight:600;font-size:17px;letter-spacing:-.015em;padding:17px 24px;border-radius:999px;border:1px solid var(--cardline);box-shadow:var(--sh);transition:transform .18s ease,box-shadow .18s ease;-webkit-tap-highlight-color:transparent}
+.cta svg{width:18px;height:18px;flex:none;transition:transform .18s ease}
+.cta:active{transform:scale(.985);box-shadow:0 1px 2px rgba(0,0,0,.2),0 4px 12px -8px rgba(0,0,0,.4)}
+.cta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+@media (hover:hover){
+  .cta:hover{transform:translateY(-1px);box-shadow:var(--shh)}
+  .cta:hover svg{transform:translateX(3px)}
+  .url:hover{color:var(--ink);text-decoration-color:var(--acc)}
+}
+.url{display:block;text-align:center;margin-top:20px;font-size:13px;font-weight:500;letter-spacing:.01em;color:var(--mute);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;transition:color .18s ease,text-decoration-color .18s ease}
+@media (prefers-reduced-motion:reduce){.cta,.cta svg,.url{transition:none}.cta:hover,.cta:active{transform:none}.cta:hover svg{transform:none}}
 </style>
 </head>
 <body>
 <main class="wrap">
 
-<div class="brand">articardd.<span>connect differently.</span></div>
+<header class="brand">
+  <div class="mark" aria-hidden="true">a</div>
+  <div>
+    <div class="word">articardd<i>.</i></div>
+    <span class="tag">connect differently</span>
+  </div>
+</header>
 
-<h1>What is articardd, and why would I use it?</h1>
-
-<p>articardd is more than a digital business card. It is your professional digital identity — one place where people can see who you are, what you do, and how they can connect with you.</p>
+<section class="hero">
+  <div class="eyebrow">Professional digital identity</div>
+  <h1>What is articardd, and why would I use it?</h1>
+  <p class="lead">articardd is more than a digital business card. It is your professional digital identity — one place where people can see who you are, what you do, and how they can connect with you.</p>
+</section>
 
 <p>Instead of giving someone your phone number, email, Facebook, LinkedIn, Instagram, website, and other links separately, you simply give them your articardd. They can instantly view the information you choose to share, save your contact, connect with you, and access your important links.</p>
 
-<p>The biggest advantage is that your information is not static. If your phone number, email, company, position, website, or other information changes, you update your articardd once. The next person who views it sees the latest version — no need to print new cards or send everyone an update.</p>
+<p class="gap">The biggest advantage is that your information is not static. If your phone number, email, company, position, website, or other information changes, you update your articardd once. The next person who views it sees the latest version — no need to print new cards or send everyone an update.</p>
 
-<p>For professionals, it makes networking faster and more memorable. For entrepreneurs and business owners, it gives you a professional identity you can control and continuously maintain. For salespeople, consultants, freelancers, agents, recruiters, and anyone who regularly meets new people, it makes exchanging information almost effortless.</p>
+<p class="gap">For professionals, it makes networking faster and more memorable. For entrepreneurs and business owners, it gives you a professional identity you can control and continuously maintain. For salespeople, consultants, freelancers, agents, recruiters, and anyone who regularly meets new people, it makes exchanging information almost effortless.</p>
 
-<p>Instead of asking someone to manually type your details, you can simply say:</p>
+<div class="center">
+  <p class="pre">Instead of asking someone to manually type your details, you can simply say:</p>
+  <p class="say"><span class="q">“</span>Here, this is my articardd.<span class="q">”</span></p>
+  <p class="post">They can open it, see your professional profile, and save your contact.</p>
+</div>
 
-<p class="say">“Here, this is my articardd.”</p>
+<p class="gap" style="margin-top:0">And unlike relying entirely on social media, articardd gives you a dedicated place for your professional identity. Your social accounts, website, contact information, portfolio, booking links, and other ways of reaching you can all start from one place.</p>
 
-<p>They can open it, see your professional profile, and save your contact.</p>
+<p class="gap">So the value isn't simply that you have a digital version of a business card.</p>
 
-<p>And unlike relying entirely on social media, articardd gives you a dedicated place for your professional identity. Your social accounts, website, contact information, portfolio, booking links, and other ways of reaching you can all start from one place.</p>
-
-<p>So the value isn't simply that you have a digital version of a business card.</p>
-
-<p>The value is that you have one identity that can stay current, one place people can remember, and one simple way to turn a meeting into a lasting connection.</p>
+<p class="value">The value is that you have one identity that can stay current, one place people can remember, and one simple way to turn a meeting into a lasting connection.</p>
 
 <div class="end">articardd — <em>Your professional identity, always current, always accessible.</em></div>
 
-<a class="cta" href="https://articardd.com" target="_blank" rel="noopener">Open articardd</a>
+<a class="cta" href="https://articardd.com" target="_blank" rel="noopener"><span>Open articardd</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
 <a class="url" href="https://articardd.com" target="_blank" rel="noopener">articardd.com</a>
 
 </main>
